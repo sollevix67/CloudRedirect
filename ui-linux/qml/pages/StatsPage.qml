@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Page {
-    title: "Stats Sync"
+    title: "Synchronisation des statistiques"
 
     ScrollView {
         anchors.fill: parent
@@ -16,14 +16,14 @@ Page {
             Item { height: 8 }
 
             Label {
-                text: "Stats Sync"
+                text: "Synchronisation des statistiques"
                 font.pointSize: 16
                 font.bold: true
                 Layout.leftMargin: 20
             }
 
             Label {
-                text: "Experimental features! May cause data loss and weird issues! You have been warned!"
+                text: "Fonctionnalités expérimentales ! Peut entraîner une perte de données et des problèmes étranges ! Vous êtes prévenu !"
                 opacity: 0.7
                 Layout.leftMargin: 20
                 Layout.rightMargin: 20
@@ -41,7 +41,7 @@ Page {
                     spacing: 8
 
                     Label {
-                        text: "Enable Stats Sync"
+                        text: "Activer la synchronisation des statistiques"
                         font.bold: true
                         Layout.fillWidth: true
                     }
@@ -64,7 +64,7 @@ Page {
                     spacing: 8
 
                     Label {
-                        text: "Sync Achievements"
+                        text: "Réalisations de synchronisation"
                         font.bold: true
                         Layout.fillWidth: true
                     }
@@ -88,7 +88,7 @@ Page {
                     spacing: 8
 
                     Label {
-                        text: "Sync Playtime"
+                        text: "Synchroniser la durée de lecture"
                         font.bold: true
                         Layout.fillWidth: true
                     }

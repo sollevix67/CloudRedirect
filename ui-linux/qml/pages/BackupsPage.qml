@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Page {
-    title: "Backups"
+    title: "Sauvegardes"
 
     property var backupsList: []
     property string searchText: ""
@@ -52,7 +52,7 @@ Page {
     // Restore confirmation dialog
     Dialog {
         id: restoreDialog
-        title: "Restore Backup"
+        title: "Restaurer la sauvegarde"
         modal: true
         standardButtons: Dialog.NoButton
         anchors.centerIn: parent
@@ -67,7 +67,7 @@ Page {
             spacing: 10
 
             Label {
-                text: "Restore backup for '" + (backend ? backend.getAppName(restoreDialog.targetBackup ? restoreDialog.targetBackup.appId : 0) : "Unknown") + "'?"
+                text: "Restaurer la sauvegarde pour '" + (backend ? backend.getAppName(restoreDialog.targetBackup ? restoreDialog.targetBackup.appId : 0) : "Unknown") + "'?"
                 font.bold: true
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
@@ -75,7 +75,7 @@ Page {
             }
 
             Label {
-                text: "ID: " + (restoreDialog.targetBackup ? restoreDialog.targetBackup.appId : "") + "  -  " + (restoreDialog.targetBackup ? restoreDialog.targetBackup.fileCount : "") + " file(s), " + (restoreDialog.targetBackup ? restoreDialog.targetBackup.sizeFormatted : "")
+                text: "IDENTIFIANT:" + (restoreDialog.targetBackup ? restoreDialog.targetBackup.appId : "") + "  -  " + (restoreDialog.targetBackup ? restoreDialog.targetBackup.fileCount : "") + "fichier(s)," + (restoreDialog.targetBackup ? restoreDialog.targetBackup.sizeFormatted : "")
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 opacity: 0.7
@@ -83,7 +83,7 @@ Page {
             }
 
             Label {
-                text: "Created: " + (restoreDialog.targetBackup ? restoreDialog.targetBackup.timestamp : "")
+                text: "Créé :" + (restoreDialog.targetBackup ? restoreDialog.targetBackup.timestamp : "")
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 opacity: 0.7
@@ -91,7 +91,7 @@ Page {
             }
 
             Label {
-                text: "This will overwrite any existing save data for this app."
+                text: "Cela écrasera toutes les données de sauvegarde existantes pour cette application."
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 visible: !restoreDialog.isRestoring && restoreDialog.resultMessage === ""
@@ -99,7 +99,7 @@ Page {
 
             // Restoring state
             Label {
-                text: "Restoring..."
+                text: "Restauration..."
                 visible: restoreDialog.isRestoring
                 Layout.alignment: Qt.AlignHCenter
             }
@@ -119,7 +119,7 @@ Page {
                 Item { Layout.fillWidth: true }
 
                 Button {
-                    text: restoreDialog.resultMessage !== "" ? "Close" : "Cancel"
+                    text: restoreDialog.resultMessage !== "" ? "Fermer" : "Annuler"
                     onClicked: {
                         restoreDialog.resultMessage = ""
                         restoreDialog.isRestoring = false
@@ -128,11 +128,11 @@ Page {
                 }
 
                 Button {
-                    text: "Restore"
+                    text: "Restaurer"
                     visible: !restoreDialog.isRestoring && restoreDialog.resultMessage === ""
                     onClicked: {
                         if (!backend || !restoreDialog.targetBackup) {
-                            restoreDialog.resultMessage = "No backup selected"
+                            restoreDialog.resultMessage = "Aucune sauvegarde sélectionnée"
                             return
                         }
                         restoreDialog.isRestoring = true
@@ -149,7 +149,7 @@ Page {
     // Delete backup confirmation dialog
     Dialog {
         id: deleteBackupDialog
-        title: "Delete Backup"
+        title: "Supprimer la sauvegarde"
         modal: true
         standardButtons: Dialog.NoButton
         anchors.centerIn: parent
@@ -187,7 +187,7 @@ Page {
             spacing: 10
 
             Label {
-                text: "Delete this backup permanently?"
+                text: "Supprimer définitivement cette sauvegarde ?"
                 font.bold: true
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
@@ -200,14 +200,14 @@ Page {
             }
 
             Label {
-                text: deleteBackupDialog.targetBackup ? deleteBackupDialog.targetBackup.fileCount + " file(s), " + deleteBackupDialog.targetBackup.sizeFormatted : ""
+                text: deleteBackupDialog.targetBackup ? deleteBackupDialog.targetBackup.fileCount + "fichier(s)," + deleteBackupDialog.targetBackup.sizeFormatted : ""
                 opacity: 0.7
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
             }
 
             Label {
-                text: "This cannot be undone."
+                text: "Cela ne peut pas être annulé."
                 opacity: 0.7
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
@@ -220,12 +220,12 @@ Page {
                 Item { Layout.fillWidth: true }
 
                 Button {
-                    text: "Cancel"
+                    text: "Annuler"
                     onClicked: deleteBackupDialog.close()
                 }
 
                 Button {
-                    text: deleteBackupDialog.canDelete ? "Delete" : "Delete (" + deleteBackupDialog.countdown + ")"
+                    text: deleteBackupDialog.canDelete ? "Supprimer" : "Supprimer (" + deleteBackupDialog.countdown + ")"
                     enabled: deleteBackupDialog.canDelete
                     onClicked: {
                         if (deleteBackupDialog.targetBackup && backend) {
@@ -250,14 +250,14 @@ Page {
             Item { height: 8 }
 
             Label {
-                text: "Backups"
+                text: "Sauvegardes"
                 font.pointSize: 16
                 font.bold: true
                 Layout.leftMargin: 20
             }
 
             Label {
-                text: "Save data backups created before deletion. Restore to recover deleted saves."
+                text: "Enregistrez les sauvegardes de données créées avant la suppression. Restaurer pour récupérer les sauvegardes supprimées."
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 Layout.leftMargin: 20
@@ -268,7 +268,7 @@ Page {
             // Search bar
             TextField {
                 id: backupSearchField
-                placeholderText: "Search by name or App ID..."
+                placeholderText: "Rechercher par nom ou ID d'application..."
                 Layout.fillWidth: true
                 Layout.leftMargin: 20
                 Layout.rightMargin: 20
@@ -323,7 +323,7 @@ Page {
                             }
 
                             Label {
-                                text: "ID: " + modelData.appId + "  -  " + modelData.fileCount + " file(s)  -  " + modelData.sizeFormatted
+                                text: "IDENTIFIANT:" + modelData.appId + "  -  " + modelData.fileCount + "fichier(s) -" + modelData.sizeFormatted
                                 opacity: 0.7
                             }
 
@@ -337,7 +337,7 @@ Page {
                         Item { Layout.fillWidth: true }
 
                         Button {
-                            text: "Restore"
+                            text: "Restaurer"
                             onClicked: {
                                 restoreDialog.targetBackup = modelData
                                 restoreDialog.resultMessage = ""
@@ -348,7 +348,7 @@ Page {
 
                         Button {
                             icon.name: "edit-delete"
-                            text: "Delete"
+                            text: "Supprimer"
                             display: AbstractButton.TextBesideIcon
                             onClicked: {
                                 deleteBackupDialog.targetBackup = modelData
@@ -364,7 +364,7 @@ Page {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 40
                 visible: backupsList.length === 0
-                text: "No backups found.\n\nBackups are created automatically when you delete app data."
+                text: "Aucune sauvegarde trouvée.\n\nLes sauvegardes sont créées automatiquement lorsque vous supprimez les données de l'application."
                 horizontalAlignment: Text.AlignHCenter
                 opacity: 0.5
             }
@@ -374,7 +374,7 @@ Page {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 40
                 visible: backupsList.length > 0 && filteredBackups().length === 0 && searchText !== ""
-                text: "No backups match \"" + searchText + "\""
+                text: "Aucune sauvegarde ne correspond à \\\"" + searchText + "\""
                 horizontalAlignment: Text.AlignHCenter
                 opacity: 0.5
             }
@@ -386,7 +386,7 @@ Page {
                 Layout.rightMargin: 20
 
                 Label {
-                    text: backupsList.length + " backup(s)"
+                    text: backupsList.length + "sauvegarde(s)"
                     opacity: 0.6
                 }
                 Item { Layout.fillWidth: true }

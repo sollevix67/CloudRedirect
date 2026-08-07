@@ -4,12 +4,18 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
   <name>CloudRedirect</name>
+  <name xml:lang="fr">CloudRedirect</name>
   <summary>Steam Cloud redirection magic for Linux!</summary>
+  <summary xml:lang="fr">La magie de la redirection Steam Cloud sous Linux !</summary>
   
   <description>
     <p>
       CloudRedirect for Linux! Redirect Steam Cloud for games unlocked by SLSSteam
       to the provider of your choice!
+    </p>
+    <p xml:lang="fr">
+      CloudRedirect pour Linux ! Redirigez Steam Cloud pour les jeux déverrouillés
+      par SLSSteam vers le fournisseur de votre choix !
     </p>
   </description>
   
@@ -54,6 +60,7 @@
     <release version="2.0.0" date="2026-05-04">
       <description>
         <p>Initial Flatpak release</p>
+        <p xml:lang="fr">Première version Flatpak</p>
       </description>
     </release>
   </releases>

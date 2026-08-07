@@ -2,7 +2,9 @@
 Type=Application
 Name=CloudRedirect
 GenericName=Cloud Save Manager
+GenericName[fr]=Gestionnaire de sauvegardes cloud
 Comment=Steam Cloud redirection magic for Linux!
+Comment[fr]=La magie de la redirection Steam Cloud sous Linux !
 Exec=cloud-redirect-ui-wrapper
 Icon=org.cloudredirect.CloudRedirect
 Terminal=false

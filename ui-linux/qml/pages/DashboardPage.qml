@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Page {
-    title: "Dashboard"
+    title: "Tableau de bord"
     
     // Track auth state locally so bindings update
     property bool providerAuth: backend ? backend.providerAuthenticated : false
@@ -18,7 +18,7 @@ Page {
     }
 
     Component.onCompleted: {
-        console.log("DashboardPage.onCompleted - calling fetchRemoteApps")
+        console.log("DashboardPage.onCompleted - appelant fetchRemoteApps")
         // Fetch remote apps when dashboard loads
         if (backend) backend.fetchRemoteApps()
     }
@@ -44,7 +44,7 @@ Page {
             Item { height: 8 }
 
             Label {
-                text: "Dashboard"
+                text: "Tableau de bord"
                 font.pointSize: 16
                 font.bold: true
                 Layout.leftMargin: 20
@@ -57,7 +57,7 @@ Page {
             }
 
             Label {
-                text: "Welcome!"
+                text: "Accueillir!"
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 Layout.leftMargin: 20
@@ -75,16 +75,16 @@ Page {
                     spacing: 4
 
                     Label {
-                        text: "Cloud Provider"
+                        text: "Fournisseur de cloud"
                         font.bold: true
                     }
                     Label {
                         text: {
                             if (!backend || !backend.providerName || backend.providerName === "local")
-                                return "Not configured"
+                                return "Non configuré"
                             if (providerAuth)
-                                return formatProviderName(backend.providerName) + " — Authenticated"
-                            return formatProviderName(backend.providerName) + " — Not authenticated"
+                                return formatProviderName(backend.providerName) + "— Authentifié"
+                            return formatProviderName(backend.providerName) + "— Non authentifié"
                         }
                         opacity: 0.7
                     }
@@ -101,7 +101,7 @@ Page {
                     spacing: 4
 
                     Label {
-                        text: "Apps Syncing"
+                        text: "Synchronisation des applications"
                         font.bold: true
                     }
                     Label {
@@ -109,8 +109,8 @@ Page {
                             var local = backend ? backend.managedAppCount : 0
                             var remoteOnly = backend ? backend.remoteOnlyAppCount : 0
                             if (remoteOnly > 0)
-                                return local + " local, " + remoteOnly + " remote only"
-                            return local + " app(s) with cloud data"
+                                return local + "locale," + remoteOnly + "à distance uniquement"
+                            return local + "application(s) avec données cloud"
                         }
                         opacity: 0.7
                     }
@@ -131,7 +131,7 @@ Page {
                         font.bold: true
                     }
                     Label {
-                        text: (backend && backend.deployed) ? "Installed" : "Not installed"
+                        text: (backend && backend.deployed) ? "Installé" : "Non installé"
                         opacity: 0.7
                     }
                 }
@@ -151,11 +151,11 @@ Page {
                         spacing: 2
 
                         Label {
-                            text: "Launch Notifications"
+                            text: "Notifications de lancement"
                             font.bold: true
                         }
                         Label {
-                            text: "Show a desktop notification when CloudRedirect loads"
+                            text: "Afficher une notification sur le bureau lors du chargement de CloudRedirect"
                             opacity: 0.7
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
@@ -174,12 +174,12 @@ Page {
                 spacing: 8
 
                 Button {
-                    text: "Open Log File"
+                    text: "Ouvrir le fichier journal"
                     onClicked: { if (backend) backend.openLogFile() }
                 }
 
                 Button {
-                    text: "Open Config Folder"
+                    text: "Ouvrir le dossier de configuration"
                     onClicked: { if (backend) backend.openConfigFolder() }
                 }
             }

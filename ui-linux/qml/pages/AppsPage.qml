@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Page {
-    title: "Apps"
+    title: "Applications"
 
     property var appsList: []
     property var filteredLocalApps: []
@@ -49,7 +49,7 @@ Page {
 
         filteredLocalApps = localResult
         filteredRemoteApps = remoteResult
-        statusText = localCount + " local, " + remoteCount + " remote"
+        statusText = localCount + "locale," + remoteCount + "télécommande"
     }
 
     onSearchTextChanged: updateFilteredLists()
@@ -74,7 +74,7 @@ Page {
 
     Dialog {
         id: deleteDialog
-        title: "Delete App Data"
+        title: "Supprimer les données de l'application"
         modal: true
         standardButtons: Dialog.NoButton
         anchors.centerIn: parent
@@ -112,14 +112,14 @@ Page {
             spacing: 10
 
             Label {
-                text: "Delete all saves for '" + (deleteDialog.targetApp ? deleteDialog.targetApp.name : "") + "' (" + (deleteDialog.targetApp ? deleteDialog.targetApp.appId : "") + ")"
+                text: "Supprimer toutes les sauvegardes pour '" + (deleteDialog.targetApp ? deleteDialog.targetApp.name : "") + "' (" + (deleteDialog.targetApp ? deleteDialog.targetApp.appId : "") + ")"
                 font.bold: true
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
             }
 
             Label {
-                text: "This will permanently delete:"
+                text: "Cela supprimera définitivement :"
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
             }
@@ -129,14 +129,14 @@ Page {
                 Layout.leftMargin: 12
 
                 Label {
-                    text: "• " + (deleteDialog.targetApp ? deleteDialog.targetApp.fileCount : "") + " file(s) (" + (deleteDialog.targetApp ? deleteDialog.targetApp.sizeFormatted : "") + ") from local CloudRedirect storage"
+                    text: "• " + (deleteDialog.targetApp ? deleteDialog.targetApp.fileCount : "") + "fichier(s) (" + (deleteDialog.targetApp ? deleteDialog.targetApp.sizeFormatted : "") + ") à partir du stockage CloudRedirect local"
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true
                     opacity: 0.8
                 }
 
                 Label {
-                    text: "• Steam userdata directory for this app"
+                    text: "• Répertoire de données utilisateur Steam pour cette application"
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true
                     opacity: 0.8
@@ -147,7 +147,7 @@ Page {
                 text: {
                     var provider = backend ? backend.providerName : "local"
                     if (provider === "gdrive" || provider === "onedrive" || provider === "r2")
-                        return "The cloud copy in " + formatProviderName(provider) + " will also be deleted."
+                        return "La copie cloud dans" + formatProviderName(provider) + "sera également supprimé."
                     return ""
                 }
                 visible: text !== ""
@@ -157,14 +157,14 @@ Page {
             }
 
             Label {
-                text: "The data will be re-downloaded from the cloud on next game launch. A backup will be created before deletion."
+                text: "Les données seront re-downloaded depuis le cloud lors du prochain lancement du jeu. Une sauvegarde sera créée avant la suppression."
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 opacity: 0.7
             }
 
             Label {
-                text: "This cannot be undone."
+                text: "Cela ne peut pas être annulé."
                 font.bold: true
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
@@ -177,12 +177,12 @@ Page {
                 Item { Layout.fillWidth: true }
 
                 Button {
-                    text: "Cancel"
+                    text: "Annuler"
                     onClicked: deleteDialog.close()
                 }
 
                 Button {
-                    text: deleteDialog.canDelete ? "Delete All Saves" : "Delete (" + deleteDialog.countdown + ")"
+                    text: deleteDialog.canDelete ? "Supprimer toutes les sauvegardes" : "Supprimer (" + deleteDialog.countdown + ")"
                     enabled: deleteDialog.canDelete
                     onClicked: {
                         if (backend && deleteDialog.targetApp) {
@@ -199,7 +199,7 @@ Page {
     // Orphan results dialog
     Dialog {
         id: orphanDialog
-        title: "Orphan Scan Results"
+        title: "Résultats de l'analyse orpheline"
         modal: true
         standardButtons: Dialog.Ok
         anchors.centerIn: parent
@@ -213,8 +213,8 @@ Page {
 
             Label {
                 text: orphanDialog.results.length === 0
-                      ? "No orphan blobs found. Storage is clean."
-                      : orphanDialog.results.length + " app(s) with orphan blobs:"
+                      ? "Aucun blobs orphelin trouvé. Le stockage est propre."
+                      : orphanDialog.results.length + "application(s) avec des blobs orphelins :"
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
             }
@@ -234,7 +234,7 @@ Page {
                             font.bold: true
                         }
                         Label {
-                            text: modelData.orphanCount + " orphan file(s), " + modelData.orphanSizeFormatted
+                            text: modelData.orphanCount + "fichier(s) orphelin(s)," + modelData.orphanSizeFormatted
                             opacity: 0.7
                         }
                     }
@@ -254,14 +254,14 @@ Page {
             Item { height: 8 }
 
             Label {
-                text: "Apps"
+                text: "Applications"
                 font.pointSize: 16
                 font.bold: true
                 Layout.leftMargin: 20
             }
 
             Label {
-                text: "Cloud saves managed by CloudRedirect. Search by name or App ID."
+                text: "Sauvegardes cloud gérées par CloudRedirect. Recherchez par nom ou ID d'application."
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 Layout.leftMargin: 20
@@ -277,13 +277,13 @@ Page {
 
                 TextField {
                     id: searchField
-                    placeholderText: "Search by name or App ID..."
+                    placeholderText: "Rechercher par nom ou ID d'application..."
                     Layout.fillWidth: true
                     onTextChanged: searchText = text
                 }
 
                 Button {
-                    text: "Scan Orphans"
+                    text: "Scanner les orphelins"
                     onClicked: {
                         var results = backend ? backend.scanOrphans() : []
                         orphanDialog.results = results
@@ -292,7 +292,7 @@ Page {
                 }
 
                 Button {
-                    text: "Refresh"
+                    text: "Rafraîchir"
                     onClicked: {
                         if (backend) {
                             backend.refreshStatus()
@@ -305,7 +305,7 @@ Page {
 
             // Local Saves section
             Label {
-                text: "Local Saves"
+                text: "Sauvegardes locales"
                 font.pointSize: 13
                 font.bold: true
                 Layout.leftMargin: 20
@@ -357,7 +357,7 @@ Page {
                                 Layout.fillWidth: true
                             }
                             Label {
-                                text: "ID: " + modelData.appId + "  •  " + modelData.fileCount + " file(s)  •  " + modelData.sizeFormatted + (modelData.saveRoot ? "  •  " + modelData.saveRoot : "")
+                                text: "IDENTIFIANT:" + modelData.appId + "  •  " + modelData.fileCount + "fichier(s) •" + modelData.sizeFormatted + (modelData.saveRoot ? "  •  " + modelData.saveRoot : "")
                                 opacity: 0.7
                             }
                         }
@@ -366,7 +366,7 @@ Page {
 
                         Button {
                             icon.name: "edit-delete"
-                            text: "Delete"
+                            text: "Supprimer"
                             display: AbstractButton.TextBesideIcon
                             onClicked: {
                                 deleteDialog.targetApp = modelData
@@ -380,12 +380,12 @@ Page {
             Label {
                 Layout.alignment: Qt.AlignHCenter
                 visible: filteredLocalApps.length === 0 && searchText === ""
-                text: "No local saves found."
+                text: "Aucune sauvegarde locale trouvée."
                 opacity: 0.5
             }
 
             Label {
-                text: "Remote Saves"
+                text: "Sauvegardes à distance"
                 font.pointSize: 13
                 font.bold: true
                 Layout.leftMargin: 20
@@ -394,7 +394,7 @@ Page {
             }
 
             Label {
-                text: "Apps with save data in cloud storage that are not downloaded locally."
+                text: "Applications avec sauvegarde des données dans le stockage cloud qui ne sont pas téléchargées localement."
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 Layout.leftMargin: 20
@@ -448,11 +448,11 @@ Page {
                                 Layout.fillWidth: true
                             }
                             Label {
-                                text: "ID: " + modelData.appId + "  •  Account: " + (backend ? backend.accountName : "Unknown")
+                                text: "IDENTIFIANT:" + modelData.appId + "•  Compte:" + (backend ? backend.accountName : "Unknown")
                                 opacity: 0.7
                             }
                             Label {
-                                text: "Not downloaded locally  •  Will download on next game launch"
+                                text: "Non téléchargé localement • Sera téléchargé au prochain lancement du jeu"
                                 opacity: 0.5
                             }
                         }
@@ -465,7 +465,7 @@ Page {
             Label {
                 Layout.alignment: Qt.AlignHCenter
                 visible: filteredRemoteApps.length === 0 && searchText === ""
-                text: "No remote-only saves found."
+                text: "Aucune sauvegarde remote-only trouvée."
                 opacity: 0.5
             }
 
@@ -473,7 +473,7 @@ Page {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 40
                 visible: appsList.length === 0
-                text: "No apps found.\n\nInstall games via SLSsteam to see them here."
+                text: "Aucune application trouvée.\n\nInstallez les jeux via SLSsteam pour les voir ici."
                 horizontalAlignment: Text.AlignHCenter
                 opacity: 0.5
             }
@@ -482,7 +482,7 @@ Page {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 40
                 visible: appsList.length > 0 && filteredLocalApps.length === 0 && filteredRemoteApps.length === 0 && searchText !== ""
-                text: "No apps match \"" + searchText + "\""
+                text: "Aucune application ne correspond à \\\"" + searchText + "\""
                 horizontalAlignment: Text.AlignHCenter
                 opacity: 0.5
             }

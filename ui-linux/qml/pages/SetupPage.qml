@@ -3,11 +3,11 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Page {
-    title: "Setup"
+    title: "Installation"
 
     Dialog {
         id: purgeDialog
-        title: "Remove All Data"
+        title: "Supprimer toutes les données"
         modal: true
         standardButtons: Dialog.NoButton
         anchors.centerIn: parent
@@ -44,7 +44,7 @@ Page {
             spacing: 10
 
             Label {
-                text: "This will permanently remove:"
+                text: "Cela supprimera définitivement :"
                 font.bold: true
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
@@ -54,16 +54,16 @@ Page {
                 spacing: 2
                 Layout.leftMargin: 12
 
-                Label { text: "• CloudRedirect from Steam (LD_AUDIT hook)"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
-                Label { text: "• cloud_redirect.so and CLI binary"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
-                Label { text: "• All configuration and settings"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
-                Label { text: "• OAuth tokens (Google Drive / OneDrive)"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
-                Label { text: "• All cached saves and cloud data"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
-                Label { text: "• Logs and backups"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                Label { text: "• CloudRedirect depuis Steam (hook LD_AUDIT)"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                Label { text: "• cloud_redirect.so et binaire CLI"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                Label { text: "• Toute la configuration et les paramètres"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                Label { text: "• Jetons OAuth (Google Drive/OneDrive)"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                Label { text: "• Toutes les sauvegardes mises en cache et les données cloud"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                Label { text: "• Journaux et sauvegardes"; opacity: 0.8; wrapMode: Text.WordWrap; Layout.fillWidth: true }
             }
 
             Label {
-                text: "This cannot be undone. You will need to re-authenticate and re-deploy to use CloudRedirect again."
+                text: "Cela ne peut pas être annulé. Vous devrez re-authenticate et re-deploy pour utiliser à nouveau CloudRedirect."
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 opacity: 0.7
@@ -76,12 +76,12 @@ Page {
                 Item { Layout.fillWidth: true }
 
                 Button {
-                    text: "Cancel"
+                    text: "Annuler"
                     onClicked: purgeDialog.close()
                 }
 
                 Button {
-                    text: purgeDialog.canPurge ? "Remove All Data" : "Remove (" + purgeDialog.countdown + ")"
+                    text: purgeDialog.canPurge ? "Supprimer toutes les données" : "Retirer (" + purgeDialog.countdown + ")"
                     enabled: purgeDialog.canPurge
                     onClicked: {
                         if (deployer) deployer.purgeAll()
@@ -103,7 +103,7 @@ Page {
             Item { height: 8 }
 
             Label {
-                text: "Setup"
+                text: "Installation"
                 font.pointSize: 16
                 font.bold: true
                 Layout.leftMargin: 20
@@ -116,7 +116,7 @@ Page {
             }
 
             Label {
-                text: "Deploy or remove CloudRedirect."
+                text: "Déployez ou supprimez CloudRedirect."
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 Layout.leftMargin: 20
@@ -139,17 +139,17 @@ Page {
                         font.bold: true
                     }
                     Label {
-                        text: deployer && deployer.slssteamInstalled ? "Installed" : "Not found"
+                        text: deployer && deployer.slssteamInstalled ? "Installé" : "Pas trouvé"
                         opacity: 0.7
                     }
                     Label {
                         visible: deployer && deployer.slssteamInstalled && deployer.slsCloudBlocked
-                        text: "Cloud Saving is disabled in your SLSsteam config!"
+                        text: "La sauvegarde dans le cloud est désactivée dans votre configuration SLSsteam !"
                         color: "#e74c3c"
                     }
                     Label {
                         visible: deployer && deployer.slssteamInstalled && deployer.slsCloudBlocked
-                        text: "Set DisableCloud: no in ~/.config/SLSsteam/config.yaml"
+                        text: "Définir DisableCloud : non dans ~/.config/SLSsteam/config.yaml"
                         font.family: "monospace"
                         opacity: 0.6
                     }
@@ -173,9 +173,9 @@ Page {
                     Label {
                         text: {
                             if (!deployer) return "Unknown"
-                            if (!deployer.alreadyDeployed) return "Not deployed"
-                            if (deployer.updateAvailable) return "Update available"
-                            return "Deployed, up to date"
+                            if (!deployer.alreadyDeployed) return "Non déployé"
+                            if (deployer.updateAvailable) return "Mise à jour disponible"
+                            return "Déployé, à jour"
                         }
                         opacity: 0.7
                     }
@@ -205,32 +205,32 @@ Page {
                 spacing: 8
 
                 Button {
-                    text: "Deploy"
+                    text: "Déployer"
                     enabled: deployer && deployer.slssteamInstalled && !deployer.alreadyDeployed
                     highlighted: deployer && deployer.slssteamInstalled && !deployer.alreadyDeployed
                     onClicked: { if (deployer) deployer.deploy() }
                 }
 
                 Button {
-                    text: "Update"
+                    text: "Mise à jour"
                     visible: deployer && deployer.updateAvailable
                     highlighted: true
                     onClicked: { if (deployer) deployer.update() }
                 }
 
                 Button {
-                    text: "Remove"
+                    text: "Retirer"
                     enabled: deployer && deployer.alreadyDeployed
                     onClicked: { if (deployer) deployer.undeploy() }
                 }
 
                 Button {
-                    text: "Remove All Data"
+                    text: "Supprimer toutes les données"
                     onClicked: purgeDialog.open()
                 }
 
                 Button {
-                    text: "Refresh"
+                    text: "Rafraîchir"
                     onClicked: { if (deployer) deployer.checkPrerequisites() }
                 }
             }

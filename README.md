@@ -1,59 +1,59 @@
-# CloudRedirect
+# Redirection vers le cloud
 
-""Steam Cloud"" for 'lua' games.
+""Steam Cloud"" pour les jeux 'lua'.
 
-**This the only official source for CloudRedirect. Any other websites are not operated by me or are otherwise endorsed by this project. At least one of those fake sites is actively distributing malware!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**
+**C'est la seule source officielle de CloudRedirect. Tous les autres sites Web ne sont pas gérés par moi ou sont autrement approuvés par ce projet. Au moins un de ces faux sites distribue activement des logiciels malveillants !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**
 
-> ****This software is experimental and under active development.**** The underlying techniques are fairly insane. What this software tries to do is nuts to attempt. This software could damage your save files and probably will! It could overwrite your saves, cause weird conflicts, make your saves disappear, make you cry. Back up any saves you care about before using this software.
+> ****Ce logiciel est expérimental et en cours de développement actif.**** Les techniques sous-jacentes sont assez folles. Ce que ce logiciel essaie de faire est fou à tenter. Ce logiciel pourrait endommager vos fichiers de sauvegarde et le fera probablement ! Cela pourrait écraser vos sauvegardes, provoquer des conflits étranges, faire disparaître vos sauvegardes, vous faire pleurer. Sauvegardez toutes les sauvegardes qui vous intéressent avant d'utiliser ce logiciel.
 
-But it probably won't. It's been very solid for a long time.
+Mais ce ne sera probablement pas le cas. C'est très solide depuis longtemps.
 
->****Do not use this if you do not actively want cloud saves for "lua" games. If all you care about is the Steam Cloud error, disable Steam Cloud in properties for that game.****
+>****N'utilisez pas ceci si vous ne souhaitez pas activement des sauvegardes dans le cloud pour les jeux "lua". Si tout ce qui vous intéresse est l'erreur Steam Cloud, désactivez Steam Cloud dans les propriétés de ce jeu. ****
 
-## What it does
+## Ce que ça fait
 
-First, some back story:
+Tout d’abord, quelques anecdotes :
 
-Once upon a time, there was a tool called SteamTools. SteamTools supported cloud saving, kind of.
+Il était une fois un outil appelé SteamTools. SteamTools prenait en charge la sauvegarde dans le cloud, en quelque sorte.
 
-Later, Valve patched the (sinful) thing SteamTools did to sync saves. Specifically, SteamTools rewrote requests to AppID 760, which is Steam Screenshots. It sent all Steam Cloud requests for non-owned AppIDs there. It did not create prefixes for each individual game, which means that each lua app shared the saves with all others. This can cause saves to conflict if multiple games use the same save file name. This also means that your saves are replicated in the `Steam/Userdata/<steamid>/<appid for lua game>` folder for each lua app.
+Plus tard, Valve a corrigé la chose (pécheresse) que SteamTools faisait pour synchroniser les sauvegardes. Plus précisément, SteamTools a réécrit les requêtes vers AppID 760, qui correspond aux captures d'écran Steam. Il y a envoyé toutes les requêtes Steam Cloud pour les AppID non -owned. Il n'a pas créé de préfixes pour chaque jeu individuel, ce qui signifie que chaque application Lua partageait les sauvegardes avec toutes les autres. Cela peut provoquer des conflits de sauvegarde si plusieurs jeux utilisent le même nom de fichier de sauvegarde. Cela signifie également que vos sauvegardes sont répliquées dans le dossier « Steam/Userdata/<steamid>/<appid for lua game> » pour chaque application Lua.
 
-It also did not support Steam AutoCloud games at all. It would simply show a fake success message for those games.
+Il ne prenait pas non plus du tout en charge les jeux Steam AutoCloud. Cela afficherait simplement un faux message de réussite pour ces jeux.
 
-What _this_ tool does is redirect Steam Cloud requests for games that are injected to Google Drive/OneDrive/a local folder, including AutoCloud games. Everything is native inside the Steam Client, but the actual data is read/written to and from your cloud account. This was much harder to do than just redirecting read/write to an AppID that your account owns, but it was fun to make. It also is less likely to piss off Valve.
+Ce que fait _cet_ outil, c'est rediriger les requêtes Steam Cloud pour les jeux injectés vers Google Drive/OneDrive/un dossier local, y compris les jeux AutoCloud. Tout est natif dans le client Steam, mais les données réelles sont lues/écrites vers et depuis votre compte cloud. C'était beaucoup plus difficile à faire que de simplement rediriger la lecture/écriture vers un AppID appartenant à votre compte, mais c'était amusant à réaliser. Il est également moins susceptible d’énerver Valve.
 
-## How it works
+## Comment ça marche
 
-CloudRedirect for Windows consists of a C++ DLL and a WPF companion app:
+CloudRedirect pour Windows se compose d'une DLL C++ et d'une application compagnon WPF :
 
-1. The companion app is used to copy the DLL to your Steam folder and let the user login to their cloud provider.
-2. The DLL hooks Steam's internal cloud save RPC handlers via ~~vtable interception~~ black magic.
-3. When a lua game attempts to read or write cloud save data, the DLL intercepts the calls and redirects it. If the game is owned, the game uses normal Steam Cloud as expected. If a lua is present that only unlocks DLC, the game will use normal Steam Cloud.
-4. More dark magic occurs. Saves sync. Bytes flow. This all is visible in the Steam UI and looks identical to normal Steam Cloud functionality.
+1. L'application compagnon est utilisée pour copier la DLL dans votre dossier Steam et permettre à l'utilisateur de se connecter à son fournisseur de cloud.
+2. La DLL accroche les gestionnaires RPC de sauvegarde dans le cloud interne de Steam via ~~ interception vtable ~~ magie noire.
+3. Lorsqu'un jeu Lua tente de lire ou d'écrire des données de sauvegarde dans le cloud, la DLL intercepte les appels et les redirige. Si le jeu appartient, le jeu utilise Steam Cloud normal comme prévu. Si un Lua est présent et déverrouille uniquement le DLC, le jeu utilisera Steam Cloud normal.
+4. De plus en plus de magie noire se produit. Enregistre la synchronisation. Flux d’octets. Tout cela est visible dans l’interface utilisateur Steam et semble identique à la fonctionnalité Steam Cloud normale.
 
-Same rough idea on Linux, but involving a flatpak application and a library that is loaded on steam startup instead. 
+Même idée approximative sous Linux, mais impliquant à la place une application flatpak et une bibliothèque chargée au démarrage de Steam.
    
-## Supported cloud providers
+## Fournisseurs de cloud pris en charge
 
-- **Google Drive**
+- **Google Drive**
 - **OneDrive**
 - **Cloudflare R2**
-- **S3-Compatible** - AWS S3, MinIO, Backblaze B2, Wasabi, DigitalOcean Spaces, and any self-hosted S3 server.
-- **Local folder / mapped drive** - by request of literally one user.
+- **S3-Compatible** - AWS S3, MinIO, Backblaze B2, Wasabi, DigitalOcean Spaces et tout serveur self-hosted S3.
+- **Dossier local / lecteur mappé** - à la demande d'un seul utilisateur.
 
-With more to come over time. 
+Avec plus à venir au fil du temps.
 
-## Usage (Windows)
+## Utilisation (Windows)
 
-Grab the latest release from the [Releases page](https://github.com/Selectively11/CloudRedirect/releases).
+Récupérez la dernière version sur la [page Versions](https://github.com/Selectively11/CloudRedirect/releases).
 
-Run the EXE. Pick your mode - STfixer mode for fixes to ST bugs, CloudRedirect mode for the good stuff. In Setup, hit 'Run All Patches'. Go to the Cloud Provider tab, select your provider. If it is a cloud provider, sign in to it.
+Exécutez le fichier EXE. Choisissez votre mode : le mode STfixer pour les corrections de bugs ST, le mode CloudRedirect pour les bonnes choses. Dans la configuration, cliquez sur « Exécuter tous les correctifs ». Accédez à l'onglet Fournisseur de cloud, sélectionnez votre fournisseur. S'il s'agit d'un fournisseur de cloud, connectez-vous.
 
-That's it. Go launch Steam and watch the magic.
+C'est ça. Allez lancer Steam et observez la magie.
 
-## Usage (Linux)
+## Utilisation (Linux)
 
-Edit your SLSsteam config, set DisableCloud to No. 
+Modifiez votre configuration SLSsteam, définissez DisableCloud sur Non.
 
 
 ```curl -fsSL headcrab.pages.dev | bash```
@@ -74,8 +74,8 @@ Now launch Steam and watch your games sync!
 ### Build
 
 ```bash
-cmake -B build -G "Visual Studio 17 2022" -A x64
-cmake --build build --config Release
+cmake -B construire -G "Visual Studio 17 2022" -A x64
+cmake --build construire la version --config
 ```
 
 This builds both the C++ DLL (`build/Release/cloud_redirect.dll`) and publishes the WPF app (`ui/bin/publish/CloudRedirect.exe`). The DLL is automatically embedded into the executable.
