@@ -171,16 +171,16 @@
     <value>Mode client Third-Party</value>
   </data>
   <data name="Choice_ThirdParty_Description" xml:space="preserve">
-    <value>À utiliser avec OpenSteamTool, HubcapTools ou d&apos;autres clients Steam tiers -party qui chargent eux-mêmes CloudRedirect. Déploie uniquement la DLL principale - pas de correctifs SteamTools.</value>
+    <value>À utiliser avec OpenSteamTool, HubcapTools ou d&apos;autres clients Steam tiers qui chargent eux-mêmes CloudRedirect. Déploie uniquement la DLL principale - pas de correctifs SteamTools.</value>
   </data>
   <data name="Choice_ThirdParty_Features" xml:space="preserve">
     <value>Sauvegardes dans le cloud + synchronisation des réussites/playtime (si pris en charge par le client) - aucun correctif ST requis</value>
   </data>
   <data name="Choice_CurrentMode_ThirdParty" xml:space="preserve">
-    <value>Mode actuel : Client Third-Party</value>
+    <value>Mode actuel : Client tiers</value>
   </data>
   <data name="Choice_CurrentMode_ThirdParty_Desc" xml:space="preserve">
-    <value>CloudRedirect est chargé par votre troisième client Steam -party. Seule la DLL principale est déployée.</value>
+    <value>CloudRedirect est chargé par votre client Steam -tiers. Seule la DLL principale est déployée.</value>
   </data>
   <data name="Choice_FailedSaveMode" xml:space="preserve">
     <value>Impossible d&apos;enregistrer votre sélection : {0}</value>
@@ -196,10 +196,10 @@
     <value>Appliquez les correctifs et déployez CloudRedirect sur votre installation Steam.</value>
   </data>
   <data name="Setup_Description_ThirdParty" xml:space="preserve">
-    <value>Déployez cloud_redirect.dll dans votre dossier Steam. Votre troisième client -party (OST, HubcapTools, etc.) le chargera automatiquement - aucun autre correctif n&apos;est nécessaire.</value>
+    <value>Déployez cloud_redirect.dll dans votre dossier Steam. Votre client tiers (OST, HubcapTools, etc.) le chargera automatiquement - aucun autre correctif n&apos;est nécessaire.</value>
   </data>
   <data name="Setup_ConfirmDeployThirdParty" xml:space="preserve">
-    <value>Cela déploiera cloud_redirect.dll dans votre répertoire Steam. Votre troisième client -party le chargera au prochain lancement. Continuer?</value>
+    <value>Cela déploiera cloud_redirect.dll dans votre répertoire Steam. Votre client tiers le chargera au prochain lancement. Continuer?</value>
   </data>
   <data name="Setup_ShowDiagnostics" xml:space="preserve">
     <value>Afficher les diagnostics</value>
@@ -208,13 +208,13 @@
     <value>Version Steam, chemin et contrôles de correctifs individuels</value>
   </data>
   <data name="Setup_SteamVersion" xml:space="preserve">
-    <value>Version vapeur</value>
+    <value>Version de Steam</value>
   </data>
   <data name="Setup_Checking" xml:space="preserve">
     <value>Vérification...</value>
   </data>
   <data name="Setup_SteamPath" xml:space="preserve">
-    <value>Chemin de vapeur</value>
+    <value>Chemin de Steam</value>
   </data>
   <data name="Setup_Detecting" xml:space="preserve">
     <value>Détection...</value>
@@ -264,7 +264,7 @@
     <value>{0} (pris en charge)</value>
   </data>
   <data name="Setup_VersionUnsupported" xml:space="preserve">
-    <value>{0} (NON PRIS EN CHARGE - {1} que {2} prévu)</value>
+    <value>{0} (NON PRIS EN CHARGE - {1} au lieu de {2} prévu)</value>
   </data>
   <data name="Setup_DirectionNewer" xml:space="preserve">
     <value>plus récent</value>
@@ -279,7 +279,7 @@
     <value>Installé mais obsolète ({0}) - mise à jour disponible</value>
   </data>
   <data name="Setup_DllInstalled" xml:space="preserve">
-    <value>Installé (octets {0}, {1})</value>
+    <value>Installé ({0} octets, {1})</value>
   </data>
   <data name="Setup_UpdateDll" xml:space="preserve">
     <value>Mettre à jour la DLL</value>
@@ -572,7 +572,7 @@ Force-kill?</value>
     <value>Clé d&apos;accès secrète</value>
   </data>
   <data name="CloudProvider_R2Bucket" xml:space="preserve">
-    <value>Seau</value>
+    <value>Compartiment</value>
   </data>
   <data name="CloudProvider_R2Advanced" xml:space="preserve">
     <value>Avancé</value>
@@ -617,7 +617,7 @@ Force-kill?</value>
     <value>Clé d&apos;accès secrète</value>
   </data>
   <data name="CloudProvider_S3Bucket" xml:space="preserve">
-    <value>Seau</value>
+    <value>Compartiment</value>
   </data>
   <data name="CloudProvider_S3Endpoint" xml:space="preserve">
     <value>Point de terminaison</value>
@@ -787,7 +787,7 @@ Force-kill?</value>
     <value>supprimer</value>
   </data>
   <data name="Apps_DeletePromptLocalStorage" xml:space="preserve">
-    <value>- Stockage local CloudRedirect : fichier(s) {0} ({1})</value>
+    <value>- Stockage local CloudRedirect : {0} fichier(s) ({1})</value>
   </data>
   <data name="Apps_DeletePromptCloudCopies" xml:space="preserve">
     <value>Copies cloud sur {0}</value>
@@ -805,7 +805,7 @@ Force-kill?</value>
     <value>Cela supprimera vos sauvegardes.</value>
   </data>
   <data name="Apps_DeletePromptExplanation" xml:space="preserve">
-    <value>Les sauvegardes locales seront sauvegardées, mais leur restauration est complexe. Vous devrez désactiver le stockage cloud pour le jeu dans Steam, restaurer la sauvegarde, puis lancer le jeu. Si vous continuez, vos sauvegardes cloud seront perdues. Ceux-ci ne sont pas sauvegardés.</value>
+    <value>Les sauvegardes locales seront conservées, mais leur restauration est complexe. Vous devrez désactiver le stockage cloud pour le jeu dans Steam, restaurer la sauvegarde, puis lancer le jeu. Si vous continuez, vos sauvegardes cloud seront perdues. Ceux-ci ne sont pas sauvegardés.</value>
   </data>
   <data name="Apps_DeletePromptConsequence" xml:space="preserve">
     <value>Si vous continuez, le jeu se comportera comme si vous n&apos;y aviez jamais joué. Vous recommencerez le jeu depuis le début au prochain lancement.</value>
@@ -819,7 +819,7 @@ Force-kill?</value>
   <data name="Apps_FinalConfirmMessage" xml:space="preserve">
     <value>Cela supprimera toutes les données de sauvegarde pour {0} ({1}).
 
-Les sauvegardes locales seront sauvegardées, mais les copies cloud seront définitivement perdues. La restauration des sauvegardes est délicate.
+Les sauvegardes locales seront conservées, mais les copies cloud seront définitivement perdues. La restauration des sauvegardes est délicate.
 
 Es-tu sûr?</value>
   </data>
@@ -834,7 +834,7 @@ Es-tu sûr?</value>
 Sauvegarde locale enregistrée dans :
 {1}
 
-Vous pouvez restaurer à partir du panneau Restaurer les enregistrements.</value>
+Vous pouvez restaurer à partir du panneau Restaurer les sauvegardes.</value>
   </data>
   <data name="Apps_DeletedTitle" xml:space="preserve">
     <value>Supprimé</value>
@@ -845,7 +845,7 @@ Vous pouvez restaurer à partir du panneau Restaurer les enregistrements.</value
 Sauvegarde enregistrée dans :
 {2}
 
-Vous pouvez restaurer à partir du panneau Restaurer les enregistrements.</value>
+Vous pouvez restaurer à partir du panneau Restaurer les sauvegardes.</value>
   </data>
   <data name="Apps_DeleteFailedTitle" xml:space="preserve">
     <value>Échec de la suppression</value>
@@ -893,25 +893,25 @@ Steam doit être fermé pendant l&apos;analyse afin qu&apos;un téléchargement 
     <value>Blob(s) cloud non référencé(s) {0}</value>
   </data>
   <data name="Apps_PruneAll" xml:space="preserve">
-    <value>Taillez tout</value>
+    <value>Tout détruire</value>
   </data>
   <data name="Apps_ReviewOrphans" xml:space="preserve">
     <value>Examiner les orphelins</value>
   </data>
   <data name="Apps_CollapseOrphans" xml:space="preserve">
-    <value>Effondrement</value>
+    <value>Réduire</value>
   </data>
   <data name="Apps_PruneScanningTitle" xml:space="preserve">
     <value>Analyse des blobs cloud...</value>
   </data>
   <data name="Apps_PruneButton" xml:space="preserve">
-    <value>Élaguer</value>
+    <value>Détruire</value>
   </data>
   <data name="Apps_PruneButtonScanning" xml:space="preserve">
     <value>Balayage...</value>
   </data>
   <data name="Apps_PruneButtonPruning" xml:space="preserve">
-    <value>Taille...</value>
+    <value>Détruire...</value>
   </data>
   <data name="Apps_PruneLocalOnlyTitle" xml:space="preserve">
     <value>Aucun fournisseur de cloud</value>
@@ -923,18 +923,18 @@ Steam doit être fermé pendant l&apos;analyse afin qu&apos;un téléchargement 
     <value>Pas de blobs orphelins</value>
   </data>
   <data name="Apps_PruneNoOrphansMessageFormat" xml:space="preserve">
-    <value>Tous les objets blob cloud {0} pour {1} sont référencés par l&apos;index de sauvegarde local. Rien à tailler.</value>
+    <value>Tous les objets blob cloud {0} pour {1} sont référencés par l&apos;index de sauvegarde local. Rien à détruire.</value>
   </data>
   <data name="Apps_PruneListingIncompleteTitle" xml:space="preserve">
     <value>Liste des nuages ​​incomplète</value>
   </data>
   <data name="Apps_PruneListingIncompleteMessage" xml:space="preserve">
-    <value>Impossible de récupérer une liste complète des objets blob cloud. L&apos;élagage de données partielles risquerait de supprimer des sauvegardes légitimes, l&apos;opération a donc été abandonnée. Réessayez lorsque votre connexion au fournisseur cloud est stable.
+    <value>Impossible de récupérer une liste complète des objets blob cloud. La détruction de données partielles risquerait de supprimer des sauvegardes légitimes, l&apos;opération a donc été abandonnée. Réessayez lorsque votre connexion au fournisseur cloud est stable.
 
 Détails : {0}</value>
   </data>
   <data name="Apps_PruneConfirmTitle" xml:space="preserve">
-    <value>Élaguer les blobs de nuages ​​​​orphelins</value>
+    <value>Détruire les blobs de nuages orphelins</value>
   </data>
   <data name="Apps_PruneConfirmHeaderFormat" xml:space="preserve">
     <value>Supprimer les objets blob cloud orphelins {0} pour {1} ({2}) ?</value>
@@ -952,19 +952,19 @@ Détails : {0}</value>
     <value>Cette opération ne peut pas être annulée. Les sauvegardes locales ne seront PAS affectées.</value>
   </data>
   <data name="Apps_PruneFinalConfirmTitle" xml:space="preserve">
-    <value>Confirmer la taille</value>
+    <value>Confirmer la déstruction</value>
   </data>
   <data name="Apps_PruneFinalConfirmMessageFormat" xml:space="preserve">
     <value>Supprimer définitivement les blobs de cloud orphelins {0} pour {1} ? Cela ne peut pas être annulé.</value>
   </data>
   <data name="Apps_PruneCompleteTitle" xml:space="preserve">
-    <value>Tailler terminé</value>
+    <value>Déstruction terminée</value>
   </data>
   <data name="Apps_PruneCompleteMessageFormat" xml:space="preserve">
     <value>Suppression des blob(s) cloud orphelins {0} pour {1}.</value>
   </data>
   <data name="Apps_PrunePartialTitle" xml:space="preserve">
-    <value>Taille partiellement terminée</value>
+    <value>Déstruction partiellement terminée</value>
   </data>
   <data name="Apps_PrunePartialMessageFormat" xml:space="preserve">
     <value>Suppression de {0} du ou des blob(s) cloud orphelins {1} pour {2}. Les fichiers {3} n&apos;ont pas pu être supprimés :
@@ -1004,8 +1004,8 @@ La sauvegarde contient : fichier(s) {1} ({2})
 Applications : {3}
 
 IMPORTANT : Avant la restauration, vous devez désactiver Steam Cloud pour ce jeu :
-  Steam &gt; right-click le jeu &gt; Propriétés &gt; Général &gt;
-  décochez &quot;Conserver les sauvegardes du jeu dans le Steam Cloud&quot;
+  Steam &gt; clic droit sur le jeu &gt; Propriétés &gt; Général &gt;
+  décochez &quot;Enregistrer les sauvegardes du jeu dans le Steam Cloud&quot;
 
 Si Steam Cloud est activé, Steam peut écraser les fichiers restaurés.
 
@@ -1022,7 +1022,7 @@ La sauvegarde elle-même n&apos;est jamais modifiée ou supprimée.</value>
     <value>Restauration terminée</value>
   </data>
   <data name="Apps_RestoredFormat" xml:space="preserve">
-    <value>Fichier(s) {0} restauré(s).</value>
+    <value>{0} fichier(s) restauré(s).</value>
   </data>
   <data name="Apps_RestoredRemotecacheFormat" xml:space="preserve">
     <value>Cache(s) distant(s) {0}.</value>
@@ -1387,7 +1387,7 @@ Es-tu sûr?</value>
     <value>Il est temps de faire un choix.</value>
   </data>
   <data name="Disclaimer_ChoiceIntegrity" xml:space="preserve">
-    <value>Si vous vous inquiétez avant tout de l’intégrité de vos sauvegardes sur disque, cet outil n’est peut-être pas fait pour vous. Cela s&apos;est bien passé pour moi et pour beaucoup d&apos;autres, mais cela ne vous convient peut-être pas.</value>
+    <value>Si vous vous inquiétez avant tout de l’intégrité de vos sauvegardes sur disque, cet outil n&apos;est peut-être pas fait pour vous. Cela s&apos;est bien passé pour moi et pour beaucoup d&apos;autres, mais cela ne vous convient peut-être pas.</value>
   </data>
   <data name="Disclaimer_ChoiceBackup" xml:space="preserve">
     <value>Si votre scénario d&apos;échec est « réinstaller Windows et oublier de sauvegarder toutes mes sauvegardes/panne matérielle/jeu plante et corrompt la sauvegarde », CR peut vous aider.</value>
