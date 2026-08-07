@@ -1,101 +1,102 @@
-# Redirection vers le cloud
+# CloudRedirect
 
-""Steam Cloud"" pour les jeux 'lua'.
+« Steam Cloud » pour les jeux « lua ».
 
-**C'est la seule source officielle de CloudRedirect. Tous les autres sites Web ne sont pas gérés par moi ou sont autrement approuvés par ce projet. Au moins un de ces faux sites distribue activement des logiciels malveillants !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**
+**Ceci est l’unique source officielle de CloudRedirect. Aucun autre site web n’est exploité par l’auteur ni approuvé par ce projet. Au moins l’un de ces faux sites distribue activement des logiciels malveillants !**
 
-> ****Ce logiciel est expérimental et en cours de développement actif.**** Les techniques sous-jacentes sont assez folles. Ce que ce logiciel essaie de faire est fou à tenter. Ce logiciel pourrait endommager vos fichiers de sauvegarde et le fera probablement ! Cela pourrait écraser vos sauvegardes, provoquer des conflits étranges, faire disparaître vos sauvegardes, vous faire pleurer. Sauvegardez toutes les sauvegardes qui vous intéressent avant d'utiliser ce logiciel.
+> **Ce logiciel est expérimental et fait l’objet d’un développement actif.** Les techniques utilisées sont particulièrement audacieuses. Ce que tente de faire ce logiciel est insensé. Il pourrait endommager vos fichiers de sauvegarde — et cela arrivera probablement ! Il pourrait écraser vos sauvegardes, provoquer des conflits étranges, les faire disparaître ou vous faire pleurer. Sauvegardez tous les fichiers auxquels vous tenez avant d’utiliser ce logiciel.
 
-Mais ce ne sera probablement pas le cas. C'est très solide depuis longtemps.
+Mais cela n’arrivera probablement pas. Le logiciel est très stable depuis longtemps.
 
->****N'utilisez pas ceci si vous ne souhaitez pas activement des sauvegardes dans le cloud pour les jeux "lua". Si tout ce qui vous intéresse est l'erreur Steam Cloud, désactivez Steam Cloud dans les propriétés de ce jeu. ****
+> **N’utilisez pas ce logiciel si vous ne souhaitez pas réellement disposer de sauvegardes cloud pour les jeux « lua ». Si seul le message d’erreur Steam Cloud vous gêne, désactivez Steam Cloud dans les propriétés du jeu concerné.**
 
-## Ce que ça fait
+## Fonctionnement
 
-Tout d’abord, quelques anecdotes :
+Commençons par un peu d’histoire.
 
-Il était une fois un outil appelé SteamTools. SteamTools prenait en charge la sauvegarde dans le cloud, en quelque sorte.
+Il était une fois un outil appelé SteamTools. SteamTools prenait plus ou moins en charge les sauvegardes cloud.
 
-Plus tard, Valve a corrigé la chose (pécheresse) que SteamTools faisait pour synchroniser les sauvegardes. Plus précisément, SteamTools a réécrit les requêtes vers AppID 760, qui correspond aux captures d'écran Steam. Il y a envoyé toutes les requêtes Steam Cloud pour les AppID non -owned. Il n'a pas créé de préfixes pour chaque jeu individuel, ce qui signifie que chaque application Lua partageait les sauvegardes avec toutes les autres. Cela peut provoquer des conflits de sauvegarde si plusieurs jeux utilisent le même nom de fichier de sauvegarde. Cela signifie également que vos sauvegardes sont répliquées dans le dossier « Steam/Userdata/<steamid>/<appid for lua game> » pour chaque application Lua.
+Valve a ensuite corrigé la méthode (sacrilège) qu’utilisait SteamTools pour synchroniser les sauvegardes. Plus précisément, SteamTools réécrivait les requêtes vers l’AppID 760, celui des captures d’écran Steam. Toutes les requêtes Steam Cloud destinées à des AppID non possédés y étaient envoyées. Aucun préfixe propre à chaque jeu n’était créé : toutes les applications « lua » partageaient donc leurs sauvegardes. Des conflits pouvaient survenir lorsque plusieurs jeux utilisaient le même nom de fichier. Les sauvegardes étaient également répliquées dans le dossier `Steam/Userdata/<steamid>/<appid du jeu lua>` de chaque application « lua ».
 
-Il ne prenait pas non plus du tout en charge les jeux Steam AutoCloud. Cela afficherait simplement un faux message de réussite pour ces jeux.
+SteamTools ne prenait pas du tout en charge les jeux utilisant Steam AutoCloud. Il affichait simplement un faux message de réussite pour ces jeux.
 
-Ce que fait _cet_ outil, c'est rediriger les requêtes Steam Cloud pour les jeux injectés vers Google Drive/OneDrive/un dossier local, y compris les jeux AutoCloud. Tout est natif dans le client Steam, mais les données réelles sont lues/écrites vers et depuis votre compte cloud. C'était beaucoup plus difficile à faire que de simplement rediriger la lecture/écriture vers un AppID appartenant à votre compte, mais c'était amusant à réaliser. Il est également moins susceptible d’énerver Valve.
+CloudRedirect redirige les requêtes Steam Cloud des jeux injectés vers Google Drive, OneDrive ou un dossier local, y compris pour les jeux AutoCloud. Tout reste intégré nativement au client Steam, mais les données sont réellement lues et écrites depuis ou vers votre compte cloud. Cette approche était bien plus difficile à mettre en œuvre qu’une simple redirection des lectures et écritures vers un AppID possédé par votre compte, mais elle était amusante à développer. Elle est également moins susceptible d’agacer Valve.
 
-## Comment ça marche
+## Fonctionnement technique
 
-CloudRedirect pour Windows se compose d'une DLL C++ et d'une application compagnon WPF :
+Sous Windows, CloudRedirect se compose d’une DLL C++ et d’une application compagnon WPF :
 
-1. L'application compagnon est utilisée pour copier la DLL dans votre dossier Steam et permettre à l'utilisateur de se connecter à son fournisseur de cloud.
-2. La DLL accroche les gestionnaires RPC de sauvegarde dans le cloud interne de Steam via ~~ interception vtable ~~ magie noire.
-3. Lorsqu'un jeu Lua tente de lire ou d'écrire des données de sauvegarde dans le cloud, la DLL intercepte les appels et les redirige. Si le jeu appartient, le jeu utilise Steam Cloud normal comme prévu. Si un Lua est présent et déverrouille uniquement le DLC, le jeu utilisera Steam Cloud normal.
-4. De plus en plus de magie noire se produit. Enregistre la synchronisation. Flux d’octets. Tout cela est visible dans l’interface utilisateur Steam et semble identique à la fonctionnalité Steam Cloud normale.
+1. L’application compagnon copie la DLL dans votre dossier Steam et permet de vous connecter à votre fournisseur cloud.
+2. La DLL intercepte les gestionnaires RPC internes des sauvegardes cloud de Steam grâce à ~~une interception de vtable~~ de la magie noire.
+3. Lorsqu’un jeu « lua » tente de lire ou d’écrire des données de sauvegarde cloud, la DLL intercepte et redirige les appels. Si vous possédez le jeu, celui-ci utilise normalement Steam Cloud. Si un fichier « lua » sert uniquement à déverrouiller un DLC, le jeu utilise également Steam Cloud normalement.
+4. Encore davantage de magie noire entre en jeu. Les sauvegardes se synchronisent. Les octets circulent. Tout est visible dans l’interface de Steam et se comporte comme la fonctionnalité Steam Cloud habituelle.
 
-Même idée approximative sous Linux, mais impliquant à la place une application flatpak et une bibliothèque chargée au démarrage de Steam.
-   
-## Fournisseurs de cloud pris en charge
+Le principe est globalement identique sous Linux, avec une application Flatpak et une bibliothèque chargée au démarrage de Steam.
 
-- **Google Drive**
+## Fournisseurs cloud pris en charge
+
+- **Google Drive**
 - **OneDrive**
 - **Cloudflare R2**
-- **S3-Compatible** - AWS S3, MinIO, Backblaze B2, Wasabi, DigitalOcean Spaces et tout serveur self-hosted S3.
-- **Dossier local / lecteur mappé** - à la demande d'un seul utilisateur.
+- **Fournisseurs compatibles S3** — AWS S3, MinIO, Backblaze B2, Wasabi, DigitalOcean Spaces et tout serveur S3 auto-hébergé.
+- **Dossier local ou lecteur réseau** — ajouté à la demande d’un seul utilisateur, littéralement.
 
-Avec plus à venir au fil du temps.
+D’autres fournisseurs viendront avec le temps.
 
-## Utilisation (Windows)
+## Utilisation sous Windows
 
-Récupérez la dernière version sur la [page Versions](https://github.com/Selectively11/CloudRedirect/releases).
+Téléchargez la dernière version depuis la [page des versions](https://github.com/Selectively11/CloudRedirect/releases).
 
-Exécutez le fichier EXE. Choisissez votre mode : le mode STfixer pour les corrections de bugs ST, le mode CloudRedirect pour les bonnes choses. Dans la configuration, cliquez sur « Exécuter tous les correctifs ». Accédez à l'onglet Fournisseur de cloud, sélectionnez votre fournisseur. S'il s'agit d'un fournisseur de cloud, connectez-vous.
+Exécutez le fichier EXE. Choisissez votre mode : STfixer pour corriger les problèmes de ST, ou CloudRedirect pour profiter de toutes les fonctionnalités. Dans l’onglet de configuration, cliquez sur « Exécuter tous les correctifs ». Ouvrez ensuite l’onglet du fournisseur cloud, sélectionnez votre fournisseur et connectez-vous si nécessaire.
 
-C'est ça. Allez lancer Steam et observez la magie.
+C’est tout. Lancez Steam et observez la magie.
 
-## Utilisation (Linux)
+## Utilisation sous Linux
 
-Modifiez votre configuration SLSsteam, définissez DisableCloud sur Non.
-
-
-```curl -fsSL headcrab.pages.dev | bash```
-
-Open the CloudRedirect app, sign into a provider.
-
-Edit your SLS config. The games you want to sync must be specified under AdditionalApps in your SLS config. This requirement will go away in the future. 
-
-Now launch Steam and watch your games sync!
-
-## Building from source (Windows)
-
-### Prerequisites
-
-- Visual Studio 2022 (or Build Tools) with the C++ and .NET 8 workloads
-- CMake 3.20+
-
-### Build
+Modifiez la configuration de SLSsteam et définissez `DisableCloud` sur `No`.
 
 ```bash
-cmake -B construire -G "Visual Studio 17 2022" -A x64
-cmake --build construire la version --config
+curl -fsSL headcrab.pages.dev | bash
 ```
 
-This builds both the C++ DLL (`build/Release/cloud_redirect.dll`) and publishes the WPF app (`ui/bin/publish/CloudRedirect.exe`). The DLL is automatically embedded into the executable.
+Ouvrez l’application CloudRedirect et connectez-vous à un fournisseur.
 
-Or don't build it? Building Windows apps is pain.
+Modifiez votre configuration SLS. Les jeux à synchroniser doivent être indiqués dans `AdditionalApps`. Cette exigence disparaîtra dans une prochaine version.
 
-## Building from source (Linux)
+Lancez ensuite Steam et regardez vos jeux se synchroniser !
 
-Oooooh boy. Yeah. Have fun. 
+## Compilation depuis les sources sous Windows
 
-You need to build against glibc 2.31 or older. Ubuntu 20.04 would work, if you dislike yourself. There's also an ancient version of Fedora that fits the bill. Or Debian 11. Distrobox is the way, here. Don't even bother trying to build under whatever distro you daily, you'll wind up fighting it for no reason. Distrobox exists for a reason. 
+### Prérequis
 
-If you are building under Ubuntu 20.04, GCC 12 is needed along with the 32-bit multilib stuff. System cmake is ancient garbage, you'll have to update it.
+- Visual Studio 2022 (ou Build Tools), avec les charges de travail C++ et .NET 8
+- CMake 3.20 ou version ultérieure
 
-Then specify -DLINUX_32BIT=ON and wham bam.
+### Compilation
 
-Isn't building for weird distros _fun?_
+```bash
+cmake -B build -G "Visual Studio 17 2022" -A x64
+cmake --build build --config Release
+```
 
-## Contibuting
+Ces commandes compilent la DLL C++ (`build/Release/cloud_redirect.dll`) et publient l’application WPF (`ui/bin/publish/CloudRedirect.exe`). La DLL est automatiquement intégrée à l’exécutable.
 
-CloudRedirect is open source. I welcome PRs. I love PRs.
+Ou ne le compilez pas ? Compiler des applications Windows est pénible.
 
-I don't _love_ downstream forks. You have a right to fork and do what you want, but if you make something useful, if you fix issues...I'd much prefer they be sent upstream! Help me help you! If you identify a problem/add a provider/improve the tool in any way, please consider submitting your changes as a PR, rather than keeping them in a downstream fork.
+## Compilation depuis les sources sous Linux
+
+Ouh là là. Oui. Amusez-vous bien.
+
+Vous devez compiler avec glibc 2.31 ou une version antérieure. Ubuntu 20.04 convient si vous aimez vous faire du mal. Une ancienne version de Fedora peut également convenir, tout comme Debian 11. Distrobox est la bonne solution ici. Ne perdez même pas votre temps à compiler sous votre distribution quotidienne : vous finiriez par vous battre avec elle sans raison. Distrobox existe précisément pour cela.
+
+Sous Ubuntu 20.04, GCC 12 est requis, ainsi que les composants multilib 32 bits. La version système de CMake est très ancienne ; vous devrez la mettre à jour.
+
+Ajoutez ensuite l’option `-DLINUX_32BIT=ON`, et le tour est joué.
+
+Compiler pour des distributions atypiques, n’est-ce pas _amusant_ ?
+
+## Contribution
+
+CloudRedirect est un logiciel libre. Les pull requests sont les bienvenues. J’adore les pull requests.
+
+J’aime moins les forks maintenus séparément. Vous avez bien sûr le droit de créer un fork et d’en faire ce que vous voulez, mais si vous développez quelque chose d’utile, corrigez un problème, ajoutez un fournisseur ou améliorez l’outil de quelque manière que ce soit, je préférerais que ces changements soient proposés au projet d’origine. Aidez-moi à vous aider ! Pensez à soumettre vos modifications sous forme de pull request plutôt que de les conserver uniquement dans un fork dérivé.
