@@ -1081,7 +1081,7 @@ La sauvegarde elle-même n&apos;est jamais modifiée ou supprimée.</value>
     <value>Nettoyer tous les fichiers suspects</value>
   </data>
   <data name="Cleanup_Back" xml:space="preserve">
-    <value>Dos</value>
+    <value>Retour</value>
   </data>
   <data name="Cleanup_RefreshBackups" xml:space="preserve">
     <value>Actualiser les sauvegardes</value>
@@ -1116,7 +1116,7 @@ La sauvegarde elle-même n&apos;est jamais modifiée ou supprimée.</value>
     <value>Nettoyer tous les fichiers suspects</value>
   </data>
   <data name="Cleanup_ConfirmCleanAllMessage" xml:space="preserve">
-    <value>Cela déplacera les fichiers suspects {0} ({1}) dans les applications {2} vers le dossier de sauvegarde.
+    <value>Cela déplacera {0} fichiers suspects  ({1}) dans les applications {2} vers le dossier de sauvegarde.
 
 Emplacement de sauvegarde : cloud_redirect/cleanup_tab_backup/
 
@@ -1128,14 +1128,14 @@ Es-tu sûr?</value>
     <value>Nettoyage terminé</value>
   </data>
   <data name="Cleanup_CleanupCompleteMessage" xml:space="preserve">
-    <value>Fichier(s) {0} déplacé vers la sauvegarde.
+    <value>{0} fichier(s) déplacé vers la sauvegarde.
 Vous pouvez les restaurer à partir de l&apos;onglet Restaurer si nécessaire.</value>
   </data>
   <data name="Cleanup_CleanupFailedTitle" xml:space="preserve">
     <value>Échec du nettoyage</value>
   </data>
   <data name="Cleanup_CleanedBannerFormat" xml:space="preserve">
-    <value>Fichier(s) {0} nettoyé(s) à sauvegarder.</value>
+    <value>{0} fichier(s) nettoyé(s) à sauvegarder.</value>
   </data>
   <data name="Cleanup_BackToScan" xml:space="preserve">
     <value>Retour à la numérisation</value>
@@ -1144,7 +1144,7 @@ Vous pouvez les restaurer à partir de l&apos;onglet Restaurer si nécessaire.</
     <value>Aucune sauvegarde trouvée.</value>
   </data>
   <data name="Cleanup_BackupCountFormat" xml:space="preserve">
-    <value>Sauvegarde(s) {0} trouvée(s)</value>
+    <value>{0} sauvegarde(s) trouvée(s)</value>
   </data>
   <data name="Cleanup_FailedLoadBackups" xml:space="preserve">
     <value>Échec du chargement des sauvegardes : {0}</value>
