@@ -199,7 +199,7 @@
     <value>Déployez cloud_redirect.dll dans votre dossier Steam. Votre client tiers (OST, HubcapTools, etc.) le chargera automatiquement - aucun autre correctif n&apos;est nécessaire.</value>
   </data>
   <data name="Setup_ConfirmDeployThirdParty" xml:space="preserve">
-    <value>Cela déploiera cloud_redirect.dll dans votre répertoire Steam. Votre client tiers le chargera au prochain lancement. Continuer?</value>
+    <value>Cela déploiera cloud_redirect.dll dans votre répertoire Steam. Votre client tiers le chargera au prochain lancement. Continuer ?</value>
   </data>
   <data name="Setup_ShowDiagnostics" xml:space="preserve">
     <value>Afficher les diagnostics</value>
@@ -258,7 +258,7 @@
     <value>Steam introuvable</value>
   </data>
   <data name="Setup_VersionCouldNotDetermine" xml:space="preserve">
-    <value>Impossible de déterminer la version Steam</value>
+    <value>Impossible de déterminer la version de Steam</value>
   </data>
   <data name="Setup_VersionSupported" xml:space="preserve">
     <value>{0} (pris en charge)</value>
@@ -371,10 +371,10 @@ Si vous ignorez cette étape, les sauvegardes seront stockées localement dans v
     <value>Désinstaller la DLL</value>
   </data>
   <data name="Setup_BlockedSFF" xml:space="preserve">
-    <value>CloudRedirect ne peut pas être déployé avec StealIdra. Veuillez supprimer les fichiers StealIdra de votre répertoire Steam.</value>
+    <value>CloudRedirect ne peut pas être déployé avec SteaMidra. Veuillez supprimer les fichiers SteaMidra de votre répertoire Steam.</value>
   </data>
   <data name="Setup_BlockedSFF_Title" xml:space="preserve">
-    <value>StealIdra détecté. StealIdra est construit sur le vol des auteurs de la communauté et n&apos;est pas pris en charge. Passez à un autre outil.</value>
+    <value>SteaMidra détecté. SteaMidra est construit sur le vol des auteurs de la communauté et n&apos;est pas pris en charge. Passez à un autre outil.</value>
   </data>
   <data name="Setup_CompatibleDetected" xml:space="preserve">
     <value>{0} détecté, est compatible avec CR.</value>
@@ -405,7 +405,7 @@ Si vous ignorez cette étape, les sauvegardes seront stockées localement dans v
     <value>Non configuré</value>
   </data>
   <data name="Dashboard_SteamInstallation" xml:space="preserve">
-    <value>Installation de vapeur</value>
+    <value>Installation de Steam</value>
   </data>
   <data name="Dashboard_Detecting" xml:space="preserve">
     <value>Détection...</value>
@@ -508,7 +508,7 @@ Continuer?</value>
 Force-kill?</value>
   </data>
   <data name="Dashboard_ForceKilling" xml:space="preserve">
-    <value>Force-killing Vapeur...</value>
+    <value>Force-killing Steam...</value>
   </data>
   <data name="Dashboard_StartingSteam" xml:space="preserve">
     <value>Démarrage de Steam...</value>
@@ -572,7 +572,7 @@ Force-kill?</value>
     <value>Clé d&apos;accès secrète</value>
   </data>
   <data name="CloudProvider_R2Bucket" xml:space="preserve">
-    <value>Compartiment</value>
+    <value>Bucket</value>
   </data>
   <data name="CloudProvider_R2Advanced" xml:space="preserve">
     <value>Avancé</value>
@@ -875,7 +875,7 @@ Steam doit être fermé pendant l&apos;analyse afin qu&apos;un téléchargement 
     <value>Aucun fournisseur de cloud</value>
   </data>
   <data name="Apps_ScanLocalOnlyMessage" xml:space="preserve">
-    <value>CloudRedirect est configuré pour le stockage local-only. Il n’existe pas de cloud pour rechercher les blobs orphelins.</value>
+    <value>CloudRedirect est configuré pour le stockage local-only. Il n&apos;existe pas de cloud pour rechercher les blobs orphelins.</value>
   </data>
   <data name="Apps_ScanFailedTitle" xml:space="preserve">
     <value>Échec de l&apos;analyse</value>
@@ -917,7 +917,7 @@ Steam doit être fermé pendant l&apos;analyse afin qu&apos;un téléchargement 
     <value>Aucun fournisseur de cloud</value>
   </data>
   <data name="Apps_PruneLocalOnlyMessage" xml:space="preserve">
-    <value>CloudRedirect est configuré pour le stockage local-only. Il n’existe aucun fournisseur de cloud à partir duquel supprimer les blobs orphelins.</value>
+    <value>CloudRedirect est configuré pour le stockage local-only. Il n&apos;existe aucun fournisseur de cloud à partir duquel supprimer les blobs orphelins.</value>
   </data>
   <data name="Apps_PruneNoOrphansTitle" xml:space="preserve">
     <value>Pas de blobs orphelins</value>
@@ -934,7 +934,7 @@ Steam doit être fermé pendant l&apos;analyse afin qu&apos;un téléchargement 
 Détails : {0}</value>
   </data>
   <data name="Apps_PruneConfirmTitle" xml:space="preserve">
-    <value>Détruire les blobs de nuages orphelins</value>
+    <value>Détruire les blobs cloud orphelins</value>
   </data>
   <data name="Apps_PruneConfirmHeaderFormat" xml:space="preserve">
     <value>Supprimer les objets blob cloud orphelins {0} pour {1} ({2}) ?</value>
@@ -1184,7 +1184,7 @@ Continuer?</value>
     <value>Échec de l&apos;annulation</value>
   </data>
   <data name="Cleanup_UndoSteamNotFound" xml:space="preserve">
-    <value>Vapeur introuvable.</value>
+    <value>Steam introuvable.</value>
   </data>
   <data name="Cleanup_UndoNoBackupFound" xml:space="preserve">
     <value>Impossible de trouver la sauvegarde du dernier nettoyage. Utilisez Restaurer à partir de la sauvegarde pour le trouver manuellement.</value>
